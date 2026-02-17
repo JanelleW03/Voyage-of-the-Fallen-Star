@@ -1,63 +1,65 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class Dialogue : MonoBehaviour
+using UnityEngine.InputSystem;
+
+public class DialogueManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
 
-    private int index;
-    void Start()
+    private InputAction _continueAction;
+    private int _index;
+    
+    private void Start()
     {
         textComponent.text = string.Empty;
+        _continueAction = InputSystem.actions.FindAction("Continue");
         StartDialogue();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (_continueAction.WasPerformedThisFrame())
         {
-            if(textComponent.text == lines[index])
+            if(textComponent.text == lines[_index])
             {
                 NextLine();
             }
             else
             {
                 StopAllCoroutines();
-                textComponent.text  = lines[index];
+                textComponent.text  = lines[_index];
             }
         }
     }
-    void StartDialogue()
+    private void StartDialogue()
     {
-        index = 0;
+        _index = 0;
         StartCoroutine(TypeLine());
     }
 
-    IEnumerator TypeLine()
+    private IEnumerator TypeLine()
     {
-        foreach (char c in lines[index].ToCharArray())
+        foreach (var c in lines[_index])
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
     }
 
-    void NextLine()
+    private void NextLine()
     {
-        if(index < lines.Length - 1)
+        if(_index < lines.Length - 1)
         {
-            index++;
+            _index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
         else
         {
-            gameObject.SetActive(false);
+            gameObject.transform.parent.gameObject.SetActive(false);
         }
     }
 }
