@@ -1,16 +1,13 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueField : MonoBehaviour
+[CreateAssetMenu(fileName = "DialogueField", menuName = "Scriptable Object")]
+public class DialogueField : ScriptableObject
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<Sprite> potraits;
+    public List<string> dialogue;
+    public List<string> speakingName;
+    public List<AudioClip> dialogueAudio;
 }
