@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,11 +8,12 @@ using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
-    public static UnityEvent<DialogueField> NPCSpeaking = new UnityEvent<DialogueField>();
+    public static UnityEvent<List<DialogueField>> NPCSpeaking = new UnityEvent<List<DialogueField>>();
     public static UnityEvent TxtPrinted = new UnityEvent();
-    DialogueField txtRef;
+    List<DialogueField> txtRef;
     public GameObject txtParent;
     int dialogueOrder;
+    int dialogueSet;
     TMP_Text txtComponent;
     // List<AudioClip>;
     float charDelay = 0.5f;
@@ -19,18 +21,20 @@ public class DialogueManager : MonoBehaviour
     void Awake()
     {
         NPCSpeaking.AddListener(DialogueCall);
+        txtParent.SetActive(false);
     }
 
-    void DialogueCall(DialogueField localText)
+    void DialogueCall(List<DialogueField> localText)
     {
         if (!txtParent.activeInHierarchy)
         {
             txtParent.SetActive(true);
             txtComponent = GetComponent<TMP_Text>();
             dialogueOrder = 0;
+            dialogueSet = 0;
             //put in the audio source here
             txtRef = localText;
-            txtComponent.text = txtRef.dialogue[dialogueOrder];
+            txtComponent.text = txtRef[dialogueSet].dialogue[dialogueOrder];
             StartCoroutine(WriteChar());
         } else
         {
@@ -43,12 +47,12 @@ public class DialogueManager : MonoBehaviour
             {
                 dialogueOrder++;
                 //advance the audio dialogue here 
-                if(dialogueOrder < txtRef.dialogue.Count && gameObject.activeInHierarchy)
+                if(dialogueOrder < txtRef[dialogueSet].dialogue.Count && gameObject.activeInHierarchy)
                 {
-                    txtComponent.text = txtRef.dialogue[dialogueOrder];
+                    txtComponent.text = txtRef[dialogueSet].dialogue[dialogueOrder];
                     StartCoroutine(WriteChar());
                 }
-                else if (dialogueOrder >= txtRef.dialogue.Count)
+                else if (dialogueOrder >= txtRef[dialogueSet].dialogue.Count)
                 {
                     txtParent.SetActive(false);
                 }
