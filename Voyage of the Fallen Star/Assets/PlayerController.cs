@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 // TODO: When the player sprite is updated, don't forget to also update the collider!
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,9 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     
     private Rigidbody _body;
+
+    // for the dialogue
+    public static UnityEvent interactionOccurence = new UnityEvent();
 
     private void Start()
     {
@@ -41,5 +45,12 @@ public class PlayerController : MonoBehaviour
             > 0 => false,
             _ => spriteRenderer.flipX
         };
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("E is pressed!");
+
+            interactionOccurence.Invoke();
+        }
     }
 }

@@ -4,22 +4,27 @@ using System.Collections.Generic;
 public class NPC : MonoBehaviour
 {
     public List<DialogueField> dialogueField;
-    void OnTriggerEnter2D(Collider2D other)
+
+    void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            Player.interactionOccurence.AddListener(StartTalking);
+            Debug.Log("Entered NPC trigger");
+            PlayerController.interactionOccurence.AddListener(StartTalking);
         }
     }
+
     void StartTalking()
     {
+        Debug.Log("Talking triggered!");
         DialogueManager.NPCSpeaking.Invoke(dialogueField);
     }
-    void OnTriggerExit2D(Collider2D other)
+
+    void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            Player.interactionOccurence.RemoveListener(StartTalking);
+            PlayerController.interactionOccurence.RemoveListener(StartTalking);
         }
     }
 }

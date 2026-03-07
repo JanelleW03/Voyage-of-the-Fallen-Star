@@ -16,16 +16,20 @@ public class DialogueManager : MonoBehaviour
     int dialogueSet;
     TMP_Text txtComponent;
     // List<AudioClip>;
-    float charDelay = 0.5f;
+    float charDelay = 0.2f;
 
     void Awake()
     {
+        Debug.Log("something is happening!");
+
         NPCSpeaking.AddListener(DialogueCall);
         txtParent.SetActive(false);
     }
 
     void DialogueCall(List<DialogueField> localText)
     {
+        Debug.Log("the dialogue box is being triggered!");
+
         if (!txtParent.activeInHierarchy)
         {
             txtParent.SetActive(true);
@@ -35,6 +39,8 @@ public class DialogueManager : MonoBehaviour
             //put in the audio source here
             txtRef = localText;
             txtComponent.text = txtRef[dialogueSet].dialogue[dialogueOrder];
+            txtComponent.ForceMeshUpdate();
+
             StartCoroutine(WriteChar());
         } else
         {
@@ -50,6 +56,8 @@ public class DialogueManager : MonoBehaviour
                 if(dialogueOrder < txtRef[dialogueSet].dialogue.Count && gameObject.activeInHierarchy)
                 {
                     txtComponent.text = txtRef[dialogueSet].dialogue[dialogueOrder];
+                    txtComponent.ForceMeshUpdate();
+
                     StartCoroutine(WriteChar());
                 }
                 else if (dialogueOrder >= txtRef[dialogueSet].dialogue.Count)
