@@ -1,83 +1,96 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-[RequireComponent(typeof(TMP_Text))]
 
 public class DialogueManager : MonoBehaviour
 {
-    public static UnityEvent<List<DialogueField>> NPCSpeaking = new UnityEvent<List<DialogueField>>();
-    public static UnityEvent TxtPrinted = new UnityEvent();
-    List<DialogueField> txtRef;
-    public GameObject txtParent;
-    int dialogueOrder;
-    int dialogueSet;
-    TMP_Text txtComponent;
-    // List<AudioClip>;
-    float charDelay = 0.2f;
+    public GameObject dialogueBox;
+    public TMP_Text textComponent;
+
+    List<DialogueField> dialogueData;
+    int dialogueIndex;
+    //public TMP_Text dialogueText;
+    int lineIndex;
+
+    float charDelay = 0.1f;
 
     void Awake()
     {
-        Debug.Log("something is happening!");
+        //x textComponent = GetComponentInChildren<TMP_Text>();
+        //defaultSize = textComponent.fontSize;
 
-        NPCSpeaking.AddListener(DialogueCall);
-        txtParent.SetActive(false);
-    }
-
-    void DialogueCall(List<DialogueField> localText)
-    {
-        Debug.Log("the dialogue box is being triggered!");
-
-        if (!txtParent.activeInHierarchy)
+        if (textComponent == null)
         {
-            txtParent.SetActive(true);
-            txtComponent = GetComponent<TMP_Text>();
-            dialogueOrder = 0;
-            dialogueSet = 0;
-            //put in the audio source here
-            txtRef = localText;
-            txtComponent.text = txtRef[dialogueSet].dialogue[dialogueOrder];
-            txtComponent.ForceMeshUpdate();
-
-            StartCoroutine(WriteChar());
-        } else
-        {
-            StopAllCoroutines();
-            if (txtComponent.maxVisibleCharacters < txtComponent.text.Length)
-            {
-                txtComponent.maxVisibleCharacters = txtComponent.text.Length;
-            }
-            else
-            {
-                dialogueOrder++;
-                //advance the audio dialogue here 
-                if(dialogueOrder < txtRef[dialogueSet].dialogue.Count && gameObject.activeInHierarchy)
-                {
-                    txtComponent.text = txtRef[dialogueSet].dialogue[dialogueOrder];
-                    txtComponent.ForceMeshUpdate();
-
-                    StartCoroutine(WriteChar());
-                }
-                else if (dialogueOrder >= txtRef[dialogueSet].dialogue.Count)
-                {
-                    txtParent.SetActive(false);
-                }
-            }
+            Debug.LogError("TMP_Text not found inside DialogueManager!");
         }
+
+       // dialogueBox.SetActive(false);
     }
 
-    IEnumerator WriteChar()
+     void Start()
     {
-        txtComponent.maxVisibleCharacters = 0;
-        foreach (char c in txtComponent.text)
+        dialogueBox.SetActive(false);
+
+    }
+
+    public void StartDialogue(List<DialogueField> newDialogue)
+    {
+        dialogueBox.SetActive(true);
+
+        dialogueData = newDialogue;
+        dialogueIndex = 0;
+        lineIndex = 0;
+
+        ShowLine();
+    }
+
+    public void NextLine()
+    {
+        if (textComponent.maxVisibleCharacters < textComponent.text.Length)
         {
-            txtComponent.maxVisibleCharacters++;
+            textComponent.maxVisibleCharacters = textComponent.text.Length;
+            return;
+        }
+
+        lineIndex++;
+
+        if (lineIndex >= dialogueData[dialogueIndex].dialogue.Count)
+        {
+            dialogueBox.SetActive(false);
+            return;
+        }
+
+        ShowLine();
+    }
+
+    void ShowLine()
+    {
+        StopAllCoroutines();
+
+        textComponent.fontSize = 100;   // ensures it keeps the correct size
+
+        textComponent.text = dialogueData[dialogueIndex].dialogue[lineIndex];
+        textComponent.ForceMeshUpdate();
+        textComponent.maxVisibleCharacters = 0;
+
+        StartCoroutine(TypeText());
+    }
+
+    IEnumerator TypeText()
+    {
+        foreach (char c in textComponent.text)
+        {
+            textComponent.maxVisibleCharacters++;
             yield return new WaitForSeconds(charDelay);
         }
-        txtComponent.maxVisibleCharacters = 99999;
-        TxtPrinted.Invoke();
+    }
+
+    void Update()
+    {
+        if (dialogueBox.activeSelf && Input.GetKeyDown(KeyCode.E))
+        {
+            NextLine();
+        }
     }
 }
-

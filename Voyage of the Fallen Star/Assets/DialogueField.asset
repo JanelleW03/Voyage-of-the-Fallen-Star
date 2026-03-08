@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87e289e13b91354abea4437d9558b34, type: 3}
   m_Name: DialogueField
   m_EditorClassIdentifier: Assembly-CSharp::DialogueField
-  potraits: []
+  potraits:
+  - {fileID: 21300000, guid: 9bdac6560ee22e9489b5040f34401cf3, type: 3}
   dialogue:
   - This is an example of dialogue
+  - talking more
   speakingName:
   - Lucien
-  dialogueAudio: []
+  dialogueAudio:
+  - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}

@@ -1,30 +1,38 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    public List<DialogueField> dialogueField;
+    public List<DialogueField> dialogue;
+    DialogueManager dialogueManager;
+
+    bool playerInRange = false;
+
+    void Start()
+    {
+        dialogueManager = FindFirstObjectByType<DialogueManager>();
+        if (dialogueManager == null)
+            Debug.LogError("DialogueManager not found in scene!");
+    
+    }
+
+    void Update()
+    {
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        {
+            dialogueManager.StartDialogue(dialogue);
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            Debug.Log("Entered NPC trigger");
-            PlayerController.interactionOccurence.AddListener(StartTalking);
-        }
-    }
-
-    void StartTalking()
-    {
-        Debug.Log("Talking triggered!");
-        DialogueManager.NPCSpeaking.Invoke(dialogueField);
+            playerInRange = true;
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            PlayerController.interactionOccurence.RemoveListener(StartTalking);
-        }
+            playerInRange = false;
     }
 }

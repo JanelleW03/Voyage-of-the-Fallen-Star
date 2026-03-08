@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _body;
 
     // for the dialogue
-    public static UnityEvent interactionOccurence = new UnityEvent();
 
     private void Start()
     {
@@ -45,12 +44,5 @@ public class PlayerController : MonoBehaviour
             > 0 => false,
             _ => spriteRenderer.flipX
         };
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("E is pressed!");
-
-            interactionOccurence.Invoke();
-        }
     }
 }
