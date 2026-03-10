@@ -2,50 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
     public GameObject dialogueBox;
     public TMP_Text textComponent;
 
-    List<DialogueField> dialogueData;
-    int dialogueIndex;
-    //public TMP_Text dialogueText;
-    int lineIndex;
+    private List<DialogueField> _dialogueData;
+    private int _dialogueIndex;
+    private int _lineIndex;
+    private float _charDelay = 0.02f;
+    
+    private InputAction _interactAction;
 
-    float charDelay = 0.1f;
-
-    void Awake()
+    private void Awake()
     {
-        //x textComponent = GetComponentInChildren<TMP_Text>();
-        //defaultSize = textComponent.fontSize;
-
         if (textComponent == null)
         {
             Debug.LogError("TMP_Text not found inside DialogueManager!");
         }
-
-       // dialogueBox.SetActive(false);
     }
 
-     void Start()
+    private void Start()
     {
         dialogueBox.SetActive(false);
-
+        _interactAction = InputSystem.actions.FindAction("Interact");
+    }
+    
+    private void Update()
+    {
+        if (dialogueBox.activeSelf && _interactAction.WasPerformedThisFrame())
+        {
+            NextLine();
+        }
     }
 
     public void StartDialogue(List<DialogueField> newDialogue)
     {
         dialogueBox.SetActive(true);
-
-        dialogueData = newDialogue;
-        dialogueIndex = 0;
-        lineIndex = 0;
-
+        _dialogueData = newDialogue;
+        _dialogueIndex = 0;
+        _lineIndex = 0;
         ShowLine();
     }
 
-    public void NextLine()
+    private void NextLine()
     {
         if (textComponent.maxVisibleCharacters < textComponent.text.Length)
         {
@@ -53,9 +55,9 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        lineIndex++;
+        _lineIndex++;
 
-        if (lineIndex >= dialogueData[dialogueIndex].dialogue.Count)
+        if (_lineIndex >= _dialogueData[_dialogueIndex].dialogue.Count)
         {
             dialogueBox.SetActive(false);
             return;
@@ -64,33 +66,23 @@ public class DialogueManager : MonoBehaviour
         ShowLine();
     }
 
-    void ShowLine()
+    private void ShowLine()
     {
         StopAllCoroutines();
-
-        textComponent.fontSize = 100;   // ensures it keeps the correct size
-
-        textComponent.text = dialogueData[dialogueIndex].dialogue[lineIndex];
+        textComponent.fontSize = 100; 
+        textComponent.text = _dialogueData[_dialogueIndex].dialogue[_lineIndex];
         textComponent.ForceMeshUpdate();
         textComponent.maxVisibleCharacters = 0;
 
         StartCoroutine(TypeText());
     }
 
-    IEnumerator TypeText()
+    private IEnumerator TypeText()
     {
-        foreach (char c in textComponent.text)
+        foreach (char _ in textComponent.text)
         {
             textComponent.maxVisibleCharacters++;
-            yield return new WaitForSeconds(charDelay);
-        }
-    }
-
-    void Update()
-    {
-        if (dialogueBox.activeSelf && Input.GetKeyDown(KeyCode.E))
-        {
-            NextLine();
+            yield return new WaitForSeconds(_charDelay);
         }
     }
 }

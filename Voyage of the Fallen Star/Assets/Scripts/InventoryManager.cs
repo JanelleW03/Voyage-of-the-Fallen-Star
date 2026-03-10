@@ -1,7 +1,6 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (_openInventoryAction.WasPerformedThisFrame() && !otherUis.Any(ui => ui.activeSelf))
         {
-            var shouldOpen = !inventoryUi.activeSelf;
+            bool shouldOpen = !inventoryUi.activeSelf;
             inventoryUi.SetActive(shouldOpen);
             hud.SetActive(!shouldOpen);
         }
