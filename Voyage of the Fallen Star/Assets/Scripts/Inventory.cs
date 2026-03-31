@@ -16,6 +16,12 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     float potionHealAmount = 25f;
 
+    [Header("Audio")]
+    [SerializeField]
+    AudioSource inventoryAudio;
+    [SerializeField]
+    AudioSource potionAudio;
+
     [Header("State")]
     [SerializeField]
     SerializedDictionary<string, Item> inventory = new();
@@ -28,6 +34,7 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            inventoryAudio.Play();
             bool isOpen = !ui.gameObject.activeSelf;
             ui.gameObject.SetActive(isOpen);
             Time.timeScale = isOpen ? 0f : 1f;
@@ -38,6 +45,7 @@ public class Inventory : MonoBehaviour
             WorldItem closest = GetClosestItem();
             if (closest != null)
                 PickUp(closest);
+
         }
     }
 
@@ -66,6 +74,7 @@ public class Inventory : MonoBehaviour
                 AddItem(item);
                 break;
             case ItemType.Potion:
+                potionAudio.Play();
                 UsePotion();
                 break;
         }

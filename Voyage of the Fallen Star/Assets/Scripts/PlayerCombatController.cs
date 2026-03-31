@@ -27,7 +27,16 @@ public class PlayerCombatController : MonoBehaviour
     private float _lastRangedTime;
     private Camera _mainCamera;
     private StatsManager _statsManager;
-    
+
+    [Header("Audio")]
+    [SerializeField]
+    AudioSource meleeAudio;
+    [SerializeField]
+    AudioSource rangedAudio;
+    [SerializeField]
+    AudioSource AOEAudio;
+
+
     private void Start()
     {
         _meleeAction = InputSystem.actions.FindAction("Melee"); 
@@ -58,6 +67,7 @@ public class PlayerCombatController : MonoBehaviour
     // TODO: Sometimes just stops working...
     private void PerformMelee()
     {
+        meleeAudio.Play();
         _lastMeleeTime = Time.time;
         
         Collider[] hitEnemies = Physics.OverlapSphere(meleeAttackPoint.position, meleeRange, enemyLayer);
@@ -75,6 +85,7 @@ public class PlayerCombatController : MonoBehaviour
 
     private void PerformRanged()
     {
+        rangedAudio.Play();
         _lastRangedTime = Time.time;
 
         Vector2 mousePos2D = Mouse.current.position.ReadValue();
@@ -107,6 +118,7 @@ public class PlayerCombatController : MonoBehaviour
     
     private void PerformAoe()
     {
+        AOEAudio.Play();
         if (aoeParticlePrefab)
         {
             GameObject aoeInstance = Instantiate(aoeParticlePrefab, transform.position, Quaternion.identity);
