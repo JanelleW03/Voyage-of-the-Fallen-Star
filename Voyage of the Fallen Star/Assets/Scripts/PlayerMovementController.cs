@@ -24,6 +24,12 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Time.timeScale == 0f)
+        {
+            _body.linearVelocity = Vector3.zero;
+            return;
+        }
+
         Vector3 castPos = transform.position + Vector3.up;
         if (Physics.Raycast(castPos, Vector3.down, out RaycastHit hit, Mathf.Infinity, terrainLayer))
         {

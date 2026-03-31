@@ -1,16 +1,33 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SceneManager : MonoBehaviour
+public class StartScreen : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject startPanel;
+    public GameObject controlsPanel;
+    public GameObject creditsPanel;
+
+    public void OnStartPressed()
     {
-        
+        SceneManager.LoadScene("MainScene");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnControlsPressed()
     {
-        
+        startPanel.SetActive(false);
+        controlsPanel.SetActive(true);
+    }
+
+    public void OnCreditsPressed()
+    {
+        startPanel.SetActive(false);
+        creditsPanel.SetActive(true);
+    }
+
+    public void OnBackPressed()
+    {
+        controlsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+        startPanel.SetActive(true);
     }
 }
