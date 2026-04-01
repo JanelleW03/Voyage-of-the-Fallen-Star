@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
     {
         //Debug.Log("Update running");
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             inventoryAudio.Play();
             bool isOpen = !ui.gameObject.activeSelf;
