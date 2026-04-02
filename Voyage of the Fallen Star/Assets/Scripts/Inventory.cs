@@ -11,6 +11,9 @@ public class Inventory : MonoBehaviour
     InventoryUI ui;
     [SerializeField]
     PlayerHealthComponent playerHealth;
+    [SerializeField] 
+    PlayerMovementController playerMovement;
+
 
     [Header("Potion Settings")]
     [SerializeField]
@@ -34,11 +37,14 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            inventoryAudio.Play();
             bool isOpen = !ui.gameObject.activeSelf;
             ui.gameObject.SetActive(isOpen);
             Time.timeScale = isOpen ? 0f : 1f;
+            playerMovement.SetMovementEnabled(!isOpen);
+
+           
         }
+
 
         if (Input.GetKeyDown(KeyCode.E) && nearbyItems.Count > 0)
         {

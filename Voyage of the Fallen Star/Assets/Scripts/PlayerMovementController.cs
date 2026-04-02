@@ -14,6 +14,10 @@ public class PlayerMovementController : MonoBehaviour
     private Rigidbody _body;
     private InputAction _moveAction;
 
+    [Header("Audio")]
+    [SerializeField]
+    AudioSource walkingAudio;
+
     private void Start()
     {
         _body = GetComponent<Rigidbody>();
@@ -43,6 +47,18 @@ public class PlayerMovementController : MonoBehaviour
         
         _body.linearVelocity = new Vector3(moveDir.x * speed, 0, moveDir.z * speed);
 
+        if (moveDir.magnitude > 0)
+        {
+            if (!walkingAudio.isPlaying)
+                walkingAudio.Play();
+        }
+        else
+        {
+            if (walkingAudio.isPlaying)
+                walkingAudio.Stop();
+        }
+
+
         if (moveValue.x != 0)
         {
             bool isMovingLeft = moveValue.x < 0;
@@ -53,5 +69,14 @@ public class PlayerMovementController : MonoBehaviour
                 attackPoints.localRotation = Quaternion.Euler(0, isMovingLeft ? 180f : 0f, 0);
             }
         }
+    }
+
+
+    public void SetMovementEnabled(bool enabled)
+    {
+        if (enabled)
+            _moveAction.Enable();
+        else
+            _moveAction.Disable();
     }
 }

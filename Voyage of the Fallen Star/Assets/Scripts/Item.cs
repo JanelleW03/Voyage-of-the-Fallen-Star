@@ -14,4 +14,7 @@ public class Item : ScriptableObject
     public Sprite icon;
     public GameObject prefab;
     public ItemType itemType;
+
+    [TextArea(3, 10)]
+    public string content;
 }

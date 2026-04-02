@@ -16,3 +16,11 @@ MonoBehaviour:
   description: first letter found in the game
   icon: {fileID: 21300000, guid: 55be6f7ab6ac72a4581bcd332e785b5a, type: 3}
   prefab: {fileID: 0}
+  itemType: 0
+  content: "Dearest Stella, \n\nI\u2019m so glad to hear you\u2019ve learned another
+    spell. Your bravery and commitment to learning magic despite the kingdom\u2019s
+    ridiculous rules is so inspiring! I wish I were writing with better news, but
+    there seems to be a predicament with my garden this week. The flowers haven\u2019t
+    grown at all! Would you be able to visit and work some magic on them? I get the
+    feeling my precious plants need some more care. I hope your studying with Lucien
+    this week goes well. \n\n\nBest, Hazel \nPrincess of the Royal Earth Kingdom "
