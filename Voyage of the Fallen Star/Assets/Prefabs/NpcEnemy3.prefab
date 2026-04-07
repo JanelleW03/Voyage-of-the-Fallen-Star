@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 1274664552882914234}
   - component: {fileID: 2233509162830785727}
   m_Layer: 6
-  m_Name: NpcEnemy
+  m_Name: NpcEnemy3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,8 +546,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NpcEnemyHealthComponent
   maxHealth: 100
   healthSlider: {fileID: 1436773021846370215}
-  energyReward: 25
+  manaReward: 25
   spriteRenderer: {fileID: 4614849762231806010}
+  passiveSprite: {fileID: 21300000, guid: cab7a994a8544544593a6b4775c8b0ab, type: 3}
 --- !u!1 &7033058437568381131
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,8 +630,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 55be6f7ab6ac72a4581bcd332e785b5a, type: 3}
-  m_Color: {r: 0.2607238, g: 0.021493427, b: 0.6509434, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4fd51eace7eccaf458eea5278939a09f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

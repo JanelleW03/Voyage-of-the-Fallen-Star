@@ -4,6 +4,7 @@ public class NpcEnemyHealthComponent : HealthComponent
 {
     public float manaReward = 25f;
     public SpriteRenderer spriteRenderer;
+    public Sprite passiveSprite;
     
     protected override void Die()
     {
@@ -20,6 +21,6 @@ public class NpcEnemyHealthComponent : HealthComponent
         }
 
         healthSlider.gameObject.SetActive(false);
-        spriteRenderer.color = Color.white;
+        spriteRenderer.sprite = passiveSprite;
     }
 }

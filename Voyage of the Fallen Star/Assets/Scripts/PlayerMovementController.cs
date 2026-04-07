@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// TODO: When the player sprite is updated, don't forget to also update the collider!
 public class PlayerMovementController : MonoBehaviour
 {
+    private static readonly int MoveX = Animator.StringToHash("MoveX");
+    private static readonly int MoveY = Animator.StringToHash("MoveY");
     public float speed;
     public float groundDist;
     
@@ -13,6 +14,7 @@ public class PlayerMovementController : MonoBehaviour
     
     private Rigidbody _body;
     private InputAction _moveAction;
+    private Animator _animator;
 
     [Header("Audio")]
     [SerializeField]
@@ -24,6 +26,8 @@ public class PlayerMovementController : MonoBehaviour
         _body.freezeRotation = true; 
         
         _moveAction = InputSystem.actions.FindAction("Move");
+        
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void FixedUpdate()
@@ -59,6 +63,8 @@ public class PlayerMovementController : MonoBehaviour
         }
 
 
+        _animator.SetFloat(MoveX, moveValue.x);
+        _animator.SetFloat(MoveY, moveValue.y);
         if (moveValue.x != 0)
         {
             bool isMovingLeft = moveValue.x < 0;
@@ -67,6 +73,16 @@ public class PlayerMovementController : MonoBehaviour
             if (attackPoints)
             {
                 attackPoints.localRotation = Quaternion.Euler(0, isMovingLeft ? 180f : 0f, 0);
+            }
+        }
+        else if (moveValue.y != 0)
+        {
+            bool isMovingBack = moveValue.y < 0;
+            spriteRenderer.flipX = isMovingBack;
+            
+            if (attackPoints)
+            {
+                attackPoints.localRotation = Quaternion.Euler(0, isMovingBack ? 90f : -90f, 0);
             }
         }
     }
