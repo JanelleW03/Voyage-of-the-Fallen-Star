@@ -3,27 +3,7 @@ guid: 79270581173a12f498dcb02d298cf118
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bowl_low_DefaultMaterial_BaseColor_stars
-    second: {fileID: 2800000, guid: 6aeabded32abf8e448e339cb9b68ca51, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bowl_low_DefaultMaterial_Emissive
-    second: {fileID: 2800000, guid: 3c6339ccc9eb8984ab9cf9af86a74ae7, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bowl_low_DefaultMaterial_Normal
-    second: {fileID: 2800000, guid: 524e8fee1540d114c91d1484127a2e81, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: bowl_low_DefaultMaterial_OcclusionRoughnessMetallic
-    second: {fileID: 2800000, guid: 06336510eea05e6479a9bcf5af070027, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
