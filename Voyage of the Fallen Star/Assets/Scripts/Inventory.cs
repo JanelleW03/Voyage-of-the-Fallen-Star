@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour
     PlayerHealthComponent playerHealth;
     [SerializeField] 
     PlayerMovementController playerMovement;
+    [SerializeField] 
+    PlayerCombatController playerCombat;
 
 
     [Header("Potion Settings")]
@@ -41,17 +43,15 @@ public class Inventory : MonoBehaviour
             ui.gameObject.SetActive(isOpen);
             Time.timeScale = isOpen ? 0f : 1f;
             playerMovement.SetMovementEnabled(!isOpen);
-
-           
+            playerCombat.enabled = !isOpen;
         }
-
 
         if (Input.GetKeyDown(KeyCode.E) && nearbyItems.Count > 0)
         {
+            if (ui.gameObject.activeSelf) return; // don't pick up while inventory is open
             WorldItem closest = GetClosestItem();
             if (closest != null)
                 PickUp(closest);
-
         }
     }
 
@@ -77,6 +77,9 @@ public class Inventory : MonoBehaviour
         switch (item.itemType)
         {
             case ItemType.Letter:
+                Debug.Log($"Audio clip: {inventoryAudio.clip}, volume: {inventoryAudio.volume}, muted: {inventoryAudio.mute}");
+
+                inventoryAudio.Play();
                 AddItem(item);
                 break;
             case ItemType.Potion:

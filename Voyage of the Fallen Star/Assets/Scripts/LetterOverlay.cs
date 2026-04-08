@@ -5,7 +5,6 @@ using TMPro;
 
 public class LetterOverlay : MonoBehaviour
 {
-    public static LetterOverlay Instance { get; private set; }
 
     [Header("References")]
     [SerializeField] GameObject contentPanel;
@@ -19,10 +18,15 @@ public class LetterOverlay : MonoBehaviour
     private List<Image> _scrollIcons = new();
     private int _currentIndex = -1;
 
-    private void Awake()
+    private static LetterOverlay _instance;
+    public static LetterOverlay Instance
     {
-        Instance = this;
-        contentPanel.SetActive(false);
+        get
+        {
+            if (_instance == null)
+                _instance = FindObjectOfType<LetterOverlay>(true);
+            return _instance;
+        }
     }
     public void RegisterScrollIcon(Item item, Image icon)
     {
