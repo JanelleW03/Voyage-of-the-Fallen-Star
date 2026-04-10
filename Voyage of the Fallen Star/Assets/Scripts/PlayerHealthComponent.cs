@@ -1,11 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthComponent: HealthComponent
 {
     protected override void Die()
     {
-        // TODO: Game Over
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

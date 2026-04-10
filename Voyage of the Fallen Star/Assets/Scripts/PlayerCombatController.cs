@@ -3,6 +3,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombatController : MonoBehaviour
 {
+    private static readonly int MeleeAttackTrigger = Animator.StringToHash("MeleeAttackTrigger");
+    private static readonly int RangedAttackTrigger = Animator.StringToHash("RangedAttackTrigger");
+    
+    [Header("2.5D Hitbox Lenience")]
+    public float meleeDepth = 1.5f; // How forgiving the Z-axis is for melee
+    public float aoeDepth = 4.0f;   // How forgiving the Z-axis is for AOE
+    
     public float meleeDamage = 10f;
     public float meleeRange = 1.5f;
     public float meleeCooldown = 0.5f;
@@ -27,6 +34,7 @@ public class PlayerCombatController : MonoBehaviour
     private float _lastRangedTime;
     private Camera _mainCamera;
     private StatsManager _statsManager;
+    private Animator _animator;
 
     [Header("Audio")]
     [SerializeField]
@@ -44,6 +52,7 @@ public class PlayerCombatController : MonoBehaviour
         _aoeAction = InputSystem.actions.FindAction("Special");
         _mainCamera = Camera.main;
         _statsManager = GetComponent<StatsManager>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -64,28 +73,23 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
 
-    // TODO: Sometimes just stops working...
     private void PerformMelee()
     {
         meleeAudio.Play();
+        _animator.SetTrigger(MeleeAttackTrigger);
         _lastMeleeTime = Time.time;
         
-        Collider[] hitEnemies = Physics.OverlapSphere(meleeAttackPoint.position, meleeRange, enemyLayer);
-        
-        foreach (Collider enemy in hitEnemies)
+        foreach (Collider enemy in Physics.OverlapBox(meleeAttackPoint.position, new Vector3(meleeRange, 2f, meleeDepth) / 2f, meleeAttackPoint.rotation, enemyLayer))
         {
             HealthComponent enemyHealth = enemy.GetComponentInParent<HealthComponent>();
-            
-            if (enemyHealth)
-            {
-                enemyHealth.TakeDamage(meleeDamage);
-            }
+            if (enemyHealth) enemyHealth.TakeDamage(meleeDamage);
         }
     }
 
     private void PerformRanged()
     {
         rangedAudio.Play();
+        _animator.SetTrigger(RangedAttackTrigger);
         _lastRangedTime = Time.time;
 
         Vector2 mousePos2D = Mouse.current.position.ReadValue();
@@ -119,21 +123,29 @@ public class PlayerCombatController : MonoBehaviour
     private void PerformAoe()
     {
         AOEAudio.Play();
-        if (aoeParticlePrefab)
+        _animator.SetTrigger(RangedAttackTrigger);
+        if (aoeParticlePrefab) Instantiate(aoeParticlePrefab, transform.position, Quaternion.identity);
+        
+        foreach (Collider enemy in Physics.OverlapBox(transform.position, new Vector3(aoeRadius, 2f, aoeDepth) / 2f, Quaternion.identity, enemyLayer))
         {
-            GameObject aoeInstance = Instantiate(aoeParticlePrefab, transform.position, Quaternion.identity);
-            Destroy(aoeInstance, 2f);
+            HealthComponent enemyHealth = enemy.GetComponentInParent<HealthComponent>();
+            if (enemyHealth) enemyHealth.TakeDamage(aoeDamage);
+        }
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        // Draws the Melee Hitbox (Red)
+        Gizmos.color = Color.red;
+        if (meleeAttackPoint != null)
+        {
+            Gizmos.matrix = Matrix4x4.TRS(meleeAttackPoint.position, meleeAttackPoint.rotation, Vector3.one);
+            Gizmos.DrawWireCube(Vector3.zero, new Vector3(meleeRange, 2f, meleeDepth));
         }
 
-        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, aoeRadius, enemyLayer);
-        
-        foreach (Collider enemy in hitEnemies)
-        {
-            HealthComponent enemyHealth = enemy.GetComponent<HealthComponent>();
-            if (enemyHealth)
-            {
-                enemyHealth.TakeDamage(aoeDamage);
-            }
-        }
+        // Draws the AOE Hitbox (Blue)
+        Gizmos.color = Color.blue;
+        Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.identity, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.zero, new Vector3(aoeRadius, 2f, aoeDepth));
     }
 }

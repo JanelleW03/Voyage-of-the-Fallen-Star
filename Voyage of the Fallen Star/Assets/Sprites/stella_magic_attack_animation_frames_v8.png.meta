@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 18a025f373064994ea9eefbc512e13e1
+guid: 951a52fc0d3520545be048020c49b37c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: area_of_attack_animation_frames_0
+      name: stella_magic_attack_animation_frames_v8_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +112,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e56098575a816248a2a1cc4340f058f
-      internalID: -214831804
+      spriteID: fb15697f7ed1ccf41ae666959569034a
+      internalID: 187000056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: area_of_attack_animation_frames_1
+      name: stella_magic_attack_animation_frames_v8_1
       rect:
         serializedVersion: 2
         x: 384
@@ -134,14 +134,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fc95c6cee18a4446a20342ceb5a13df
-      internalID: -931035962
+      spriteID: 6da4f2a96f8b178429ac718f99a2a2fb
+      internalID: -1765972661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: area_of_attack_animation_frames_2
+      name: stella_magic_attack_animation_frames_v8_2
       rect:
         serializedVersion: 2
         x: 768
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8feadc4c3302c94a8615d0d2c5a973a
-      internalID: -1928892704
+      spriteID: d663bcf39bedaf94982b388e645a383e
+      internalID: 1936356323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: area_of_attack_animation_frames_3
+      name: stella_magic_attack_animation_frames_v8_3
       rect:
         serializedVersion: 2
         x: 1152
@@ -178,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8794545cc46af9e408349b8b9c38d3b6
-      internalID: -1386278851
+      spriteID: f966affeeab8b924186e012d05463579
+      internalID: -849689496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: area_of_attack_animation_frames_4
+      name: stella_magic_attack_animation_frames_v8_4
       rect:
         serializedVersion: 2
         x: 1536
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4adb31d55963bd54ebaa44da13d46a03
-      internalID: 551587814
+      spriteID: 492b24e53a462434a82444dcb1bac5fe
+      internalID: 1251754406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: area_of_attack_animation_frames_5
+      name: stella_magic_attack_animation_frames_v8_5
       rect:
         serializedVersion: 2
         x: 0
@@ -222,14 +222,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87123215a4b3441499ee5dcf961af625
-      internalID: 187545598
+      spriteID: 9b488fffd11418a49be33d5b570cb10e
+      internalID: -1056397224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: area_of_attack_animation_frames_6
+      name: stella_magic_attack_animation_frames_v8_6
       rect:
         serializedVersion: 2
         x: 384
@@ -244,8 +244,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50958fddf39b81d49bf7f951d4f6ff11
-      internalID: -1432487138
+      spriteID: 3c97543bae93c1e4ab30d187501ad553
+      internalID: 1588916594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stella_magic_attack_animation_frames_v8_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 384
+        height: 540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e065c1d10761c044e9982915c946f9bc
+      internalID: -885359412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stella_magic_attack_animation_frames_v8_8
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 384
+        height: 540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f779b5fec44f73f4e87b7b9a3ac7ea58
+      internalID: 225339834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stella_magic_attack_animation_frames_v8_9
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 384
+        height: 540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40c0df0dbc4a8cc44b2e004e482a2dcf
+      internalID: 1688932639
       vertices: []
       indices: 
       edges: []
@@ -254,7 +320,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 27b2be6ca12a1f24085212e8c59e986f
+    spriteID: d8da174aab81c7e4bb80effca2c60a67
     internalID: 0
     vertices: []
     indices: 
@@ -266,16 +332,16 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":2.0},"gridSpriteSize":{"x":384.0,"y":540.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      area_of_attack_animation_frames_0: -214831804
-      area_of_attack_animation_frames_1: -931035962
-      area_of_attack_animation_frames_2: -1928892704
-      area_of_attack_animation_frames_3: -1386278851
-      area_of_attack_animation_frames_4: 551587814
-      area_of_attack_animation_frames_5: 187545598
-      area_of_attack_animation_frames_6: -1432487138
-      area_of_attack_animation_frames_7: -1347644669
-      area_of_attack_animation_frames_8: -1254314004
-      area_of_attack_animation_frames_9: 1897991316
+      stella_magic_attack_animation_frames_v8_0: 187000056
+      stella_magic_attack_animation_frames_v8_1: -1765972661
+      stella_magic_attack_animation_frames_v8_2: 1936356323
+      stella_magic_attack_animation_frames_v8_3: -849689496
+      stella_magic_attack_animation_frames_v8_4: 1251754406
+      stella_magic_attack_animation_frames_v8_5: -1056397224
+      stella_magic_attack_animation_frames_v8_6: 1588916594
+      stella_magic_attack_animation_frames_v8_7: -885359412
+      stella_magic_attack_animation_frames_v8_8: 225339834
+      stella_magic_attack_animation_frames_v8_9: 1688932639
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
