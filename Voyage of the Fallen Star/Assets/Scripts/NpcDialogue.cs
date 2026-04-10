@@ -1,48 +1,40 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class NpcDialogue : MonoBehaviour
 {
     public List<DialogueField> dialogue;
-    
-    private DialogueManager _dialogueManager;
-    private InputAction _interactAction;
 
+    private DialogueManager _dialogueManager;
     private bool _playerInRange;
+    private int _conversationIndex = 0;
 
     private void Start()
     {
         _dialogueManager = FindFirstObjectByType<DialogueManager>();
-        if (_dialogueManager == null)
-        {
-            Debug.LogError("DialogueManager not found in scene!");
-        }
-        
-        _interactAction = InputSystem.actions.FindAction("Interact");
     }
 
     private void Update()
     {
-        if (_playerInRange && _interactAction.WasPerformedThisFrame())
+        if (_playerInRange && Input.GetKeyDown(KeyCode.E) && !_dialogueManager.IsDialogueActive())
         {
-            _dialogueManager.StartDialogue(dialogue);
+            if (_conversationIndex < dialogue.Count)
+            {
+                _dialogueManager.StartDialogue(new List<DialogueField> { dialogue[_conversationIndex] });
+                _conversationIndex++;
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             _playerInRange = true;
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             _playerInRange = false;
-        }
     }
 }

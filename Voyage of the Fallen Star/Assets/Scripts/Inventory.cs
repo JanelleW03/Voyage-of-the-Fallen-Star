@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour
     {
         //Debug.Log("Update running");
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             bool isOpen = !ui.gameObject.activeSelf;
             ui.gameObject.SetActive(isOpen);
@@ -53,6 +53,8 @@ public class Inventory : MonoBehaviour
             if (closest != null)
                 PickUp(closest);
         }
+
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,7 +79,7 @@ public class Inventory : MonoBehaviour
         switch (item.itemType)
         {
             case ItemType.Letter:
-                Debug.Log($"Audio clip: {inventoryAudio.clip}, volume: {inventoryAudio.volume}, muted: {inventoryAudio.mute}");
+                //Debug.Log($"Audio clip: {inventoryAudio.clip}, volume: {inventoryAudio.volume}, muted: {inventoryAudio.mute}");
 
                 inventoryAudio.Play();
                 AddItem(item);
