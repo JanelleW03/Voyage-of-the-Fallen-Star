@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 30ec851ef79c9e14c9ec9d66f24d90c9
+guid: ce44ea56d9e76f341a7c6d63736cb24f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stella_0
+      name: stella_walk_animation_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 584
-        width: 183
-        height: 534
+        x: 0
+        y: 540
+        width: 384
+        height: 540
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3e163606a0b2774b9a46c82dee725ca
-      internalID: -231740297
+      spriteID: c55ae052d7617164eb49f104368eb8c7
+      internalID: -28623452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stella_1
+      name: stella_walk_animation_1
       rect:
         serializedVersion: 2
-        x: 391
-        y: 584
-        width: 183
-        height: 531
+        x: 384
+        y: 540
+        width: 384
+        height: 540
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +134,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9269187a83742cc4381a5d3c82342cc7
-      internalID: -936196758
+      spriteID: 625f192a0a2fd3a4b831050a9d360a4b
+      internalID: 1354085376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stella_2
+      name: stella_walk_animation_2
       rect:
         serializedVersion: 2
-        x: 773
-        y: 584
-        width: 183
-        height: 523
+        x: 768
+        y: 540
+        width: 384
+        height: 540
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89e372276d8932d49b79b4fdbec597c1
-      internalID: 99126354
+      spriteID: 735ef3eb30ee4554db8be2cc679c5fc5
+      internalID: 969636583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stella_3
+      name: stella_walk_animation_3
       rect:
         serializedVersion: 2
-        x: 1155
-        y: 584
-        width: 183
-        height: 523
+        x: 1152
+        y: 540
+        width: 384
+        height: 540
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31f5fc71c225e834e9a3697780353e2c
-      internalID: 1483540404
+      spriteID: 13b07549bebf1fa43a0b4040bc54a04c
+      internalID: 482237906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stella_4
+      name: stella_walk_animation_4
       rect:
         serializedVersion: 2
-        x: 1541
-        y: 584
-        width: 183
-        height: 528
+        x: 1536
+        y: 540
+        width: 384
+        height: 540
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c755b9c388bb9c4b8485cca69fdb2e5
-      internalID: 806758038
+      spriteID: a03df7024aa1bb34d8759c76a45aa209
+      internalID: -434654259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stella_5
+      name: stella_walk_animation_5
       rect:
         serializedVersion: 2
-        x: 11
-        y: 4
-        width: 183
-        height: 530
+        x: 0
+        y: 0
+        width: 384
+        height: 540
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,8 +222,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ceae83263c4fbb4e95b17766fea5e04
-      internalID: -695505548
+      spriteID: 3e890858955186e47a8199d11c7b1701
+      internalID: 1319528364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stella_walk_animation_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 384
+        height: 540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bb1958c643931745ad4c7ec0a75a66e
+      internalID: 762139635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stella_walk_animation_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 384
+        height: 540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72eaea774802c1445829a55f6aa0b338
+      internalID: 47239896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stella_walk_animation_8
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 384
+        height: 540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bc3e4e17268fe54eaecf55f4f79ef17
+      internalID: 505447730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stella_walk_animation_9
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 384
+        height: 540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5238af1f35c86fc41abbc751c981dacc
+      internalID: 19502131
       vertices: []
       indices: 
       edges: []
@@ -232,7 +320,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: ee4807f32fff7b349b003643bf74addb
     internalID: 0
     vertices: []
     indices: 
@@ -241,17 +329,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries:
-      - key: SpriteEditor.SliceOnImport
-        value: True
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":true,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":2.0},"gridSpriteSize":{"x":384.0,"y":540.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      stella_0: -231740297
-      stella_1: -936196758
-      stella_2: 99126354
-      stella_3: 1483540404
-      stella_4: 806758038
-      stella_5: -695505548
+      stella_walk_animation_0: -28623452
+      stella_walk_animation_1: 1354085376
+      stella_walk_animation_2: 969636583
+      stella_walk_animation_3: 482237906
+      stella_walk_animation_4: -434654259
+      stella_walk_animation_5: 1319528364
+      stella_walk_animation_6: 762139635
+      stella_walk_animation_7: 47239896
+      stella_walk_animation_8: 505447730
+      stella_walk_animation_9: 19502131
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
