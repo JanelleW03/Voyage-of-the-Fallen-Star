@@ -78,9 +78,6 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-
-
-
     public void SetMovementEnabled(bool enabled)
     {
         if (enabled)
