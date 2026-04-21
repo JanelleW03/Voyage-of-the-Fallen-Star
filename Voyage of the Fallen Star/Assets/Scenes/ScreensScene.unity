@@ -2940,8 +2940,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Coders: Thomas Glasser & Janelle Whiteside\n\n2D Art:  Jennifer Kerwin\u200B\n\n3D
-    Art: Isabel Hernandez\n"
+  m_text: "\n\n\n\n\n\n\nPresented by Supernova Studios\n\n\n\n\nVoyage of the Fallen
+    Star\n\n\n\n\n\n\n\n\n\nCoders: Janelle Whiteside & Thomas Glasser\n\n\n\n\n2D
+    Art:  Jennifer Kerwin\n\n\n\u200B\n\n3D Art: Isabel Hernandez\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d20cf17291719744a9ac719ec2b6f4a, type: 2}
   m_sharedMaterial: {fileID: -5626316112987653056, guid: 7d20cf17291719744a9ac719ec2b6f4a, type: 2}
@@ -3711,7 +3712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1557.9999, y: -829}
+  m_AnchoredPosition: {x: 1625, y: -829}
   m_SizeDelta: {x: 500, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &921761646
