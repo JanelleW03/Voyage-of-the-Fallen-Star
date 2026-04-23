@@ -29463,9 +29463,9 @@ GameObject:
   - component: {fileID: 1354858886}
   - component: {fileID: 1354858887}
   - component: {fileID: 1354858888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: lucien sprite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
