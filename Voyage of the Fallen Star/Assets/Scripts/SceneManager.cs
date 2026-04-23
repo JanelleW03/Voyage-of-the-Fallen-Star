@@ -7,6 +7,19 @@ public class StartScreen : MonoBehaviour
     public GameObject controlsPanel;
     public GameObject creditsPanel;
 
+    private void Start()
+    {
+        // show Credits automatically after winning
+        if (PlayerPrefs.GetInt("ShowCredits", 0) == 1)
+        {
+            PlayerPrefs.SetInt("ShowCredits", 0);
+            PlayerPrefs.Save();
+
+            startPanel.SetActive(false);
+            creditsPanel.SetActive(true);
+        }
+    }
+
     public void OnStartPressed()
     {
         SceneManager.LoadScene("MainScene");

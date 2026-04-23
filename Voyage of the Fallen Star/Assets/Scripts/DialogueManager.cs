@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
-
-    public AudioSource dialogueAudioSource; 
+    public AudioSource dialogueAudioSource;
     public GameObject dialogueBox;
     public TMP_Text textComponent;
+    public TMP_Text nameComponent;
 
     private List<DialogueField> _dialogueData;
     private int _dialogueIndex;
@@ -17,17 +17,12 @@ public class DialogueManager : MonoBehaviour
     private float _charDelay = 0.02f;
 
     private PlayerMovementController _playerMovement;
-
     private InputAction _interactAction;
-
-    public TMP_Text nameComponent;   // drag "Character Name" here
 
     private void Awake()
     {
         if (textComponent == null)
-        {
             Debug.LogError("TMP_Text not found inside DialogueManager!");
-        }
     }
 
     public bool IsDialogueActive()
@@ -41,14 +36,13 @@ public class DialogueManager : MonoBehaviour
         _interactAction = InputSystem.actions.FindAction("Interact");
         _playerMovement = FindFirstObjectByType<PlayerMovementController>();
     }
-    
+
     private void Update()
     {
         if (dialogueBox.activeSelf && Input.GetKeyDown(KeyCode.Space))
-        {
             NextLine();
-        }
     }
+
     public void StartDialogue(List<DialogueField> newDialogue)
     {
         _playerMovement?.SetMovementEnabled(false);
@@ -59,17 +53,13 @@ public class DialogueManager : MonoBehaviour
         ShowLine();
     }
 
-    private IEnumerator DelayedStart()
-    {
-        yield return new WaitForSeconds(3f);
-        dialogueBox.SetActive(true);
-        ShowLine();
-    }
     private void NextLine()
     {
         if (textComponent.maxVisibleCharacters < textComponent.text.Length)
         {
+            StopAllCoroutines();
             textComponent.maxVisibleCharacters = textComponent.text.Length;
+            dialogueAudioSource?.Stop();
             return;
         }
 
@@ -77,7 +67,9 @@ public class DialogueManager : MonoBehaviour
 
         if (_lineIndex >= _dialogueData[_dialogueIndex].dialogue.Count)
         {
-            dialogueBox.SetActive(false);  // hides the box when dialogue ends
+            // Dialogue finished -- stop audio and hide box
+            dialogueAudioSource?.Stop();
+            dialogueBox.SetActive(false);
             _playerMovement?.SetMovementEnabled(true);
             return;
         }
@@ -88,7 +80,7 @@ public class DialogueManager : MonoBehaviour
     private void ShowLine()
     {
         StopAllCoroutines();
-        textComponent.fontSize = 100;
+        textComponent.fontSize = 70;
         textComponent.text = _dialogueData[_dialogueIndex].dialogue[_lineIndex];
         textComponent.ForceMeshUpdate();
         textComponent.maxVisibleCharacters = 0;
@@ -96,7 +88,6 @@ public class DialogueManager : MonoBehaviour
         if (nameComponent != null)
             nameComponent.text = _dialogueData[_dialogueIndex].speakingName[_lineIndex];
 
-        // Play audio for this line
         var audioClips = _dialogueData[_dialogueIndex].dialogueAudio;
         if (dialogueAudioSource != null && _lineIndex < audioClips.Count && audioClips[_lineIndex] != null)
         {
@@ -106,6 +97,7 @@ public class DialogueManager : MonoBehaviour
 
         StartCoroutine(TypeText());
     }
+
     private IEnumerator TypeText()
     {
         foreach (char _ in textComponent.text)

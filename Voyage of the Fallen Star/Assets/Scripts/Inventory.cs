@@ -11,11 +11,10 @@ public class Inventory : MonoBehaviour
     InventoryUI ui;
     [SerializeField]
     PlayerHealthComponent playerHealth;
-    [SerializeField] 
+    [SerializeField]
     PlayerMovementController playerMovement;
-    [SerializeField] 
+    [SerializeField]
     PlayerCombatController playerCombat;
-
 
     [Header("Potion Settings")]
     [SerializeField]
@@ -35,8 +34,6 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("Update running");
-
         if (Input.GetKeyDown(KeyCode.I))
         {
             bool isOpen = !ui.gameObject.activeSelf;
@@ -48,13 +45,23 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && nearbyItems.Count > 0)
         {
-            if (ui.gameObject.activeSelf) return; // don't pick up while inventory is open
+            if (ui.gameObject.activeSelf) return;
             WorldItem closest = GetClosestItem();
             if (closest != null)
                 PickUp(closest);
         }
+    }
 
+    // Returns true if the inventory UI is currently closed
+    public bool IsInventoryClosed() => !ui.gameObject.activeSelf;
 
+    // Returns true if the player has picked up a letter
+    public bool HasLetter()
+    {
+        foreach (var item in inventory.Values)
+            if (item.itemType == ItemType.Letter)
+                return true;
+        return false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -79,8 +86,6 @@ public class Inventory : MonoBehaviour
         switch (item.itemType)
         {
             case ItemType.Letter:
-                //Debug.Log($"Audio clip: {inventoryAudio.clip}, volume: {inventoryAudio.volume}, muted: {inventoryAudio.mute}");
-
                 inventoryAudio.Play();
                 AddItem(item);
                 break;
@@ -127,6 +132,4 @@ public class Inventory : MonoBehaviour
 
         return closest;
     }
-
-
 }

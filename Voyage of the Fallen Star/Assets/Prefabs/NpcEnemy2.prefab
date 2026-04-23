@@ -403,7 +403,6 @@ GameObject:
   - component: {fileID: 380228519565288249}
   - component: {fileID: 9178156326292640782}
   - component: {fileID: 3631849284425447024}
-  - component: {fileID: 6920181904665074240}
   - component: {fileID: 1274664552882914234}
   - component: {fileID: 2233509162830785727}
   m_Layer: 6
@@ -501,19 +500,6 @@ NavMeshAgent:
   m_BaseOffset: 2.75
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6920181904665074240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6846318784164877423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801c2826111680548ad6d13b42ef1810, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NpcDialogue
-  dialogue: []
 --- !u!114 &1274664552882914234
 MonoBehaviour:
   m_ObjectHideFlags: 0

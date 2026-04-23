@@ -5,24 +5,26 @@ using Unity.Cinemachine;
 public class DoorTrigger : MonoBehaviour
 {
     public Transform spawnPoint;
+    public AudioSource doorAudioSource; // drag an AudioSource with your door sound here
 
     private bool isTransitioning = false;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !isTransitioning)
-        {
             StartCoroutine(TransitionToRoom(other.gameObject));
-        }
     }
 
     private IEnumerator TransitionToRoom(GameObject player)
     {
         isTransitioning = true;
 
+        // Play door sound before fading
+        if (doorAudioSource != null)
+            doorAudioSource.Play();
+
         yield return StartCoroutine(FadeManager.Instance.FadeOut());
 
-        // Teleport player
         CharacterController cc = player.GetComponent<CharacterController>();
         if (cc != null) cc.enabled = false;
 
@@ -33,7 +35,6 @@ public class DoorTrigger : MonoBehaviour
 
         if (cc != null) cc.enabled = true;
 
-        // Snap camera
         CinemachineCamera vcam = FindFirstObjectByType<CinemachineCamera>();
         if (vcam != null)
             vcam.OnTargetObjectWarped(player.transform, delta);

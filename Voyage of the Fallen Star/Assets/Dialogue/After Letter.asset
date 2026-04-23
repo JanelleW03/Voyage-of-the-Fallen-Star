@@ -19,16 +19,22 @@ MonoBehaviour:
   - "Hazel needs help, huh? I guess I\u2019m going to the Earth Kingdom today. It
     shouldn\u2019t take long to get there. Excuse me! I'm just letting you know I'll
     be out for the day "
-  - "Servant: Oh... that\u2019s unfortunate. Lucien wanted to study for your politics
-    class today..."
+  - "Oh... that\u2019s unfortunate. Lucien wanted to study for your politics class
+    today..."
   - 'Her letter made it sound urgent; Lucien can wait until tomorrow. '
   - Let us go see him, perhaps he can make you reconsider!
+  - I don't think that is necessary, I'm just going to see my friend
+  - Unfortunately I must insist princess. Otherwise we may have to fight
   speakingName:
   - Stella
   - Castle Servant
   - Stella
   - Castle Servant
+  - Stella
+  - Castle Servant
   dialogueAudio:
+  - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}
+  - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}
   - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}
   - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}
   - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}

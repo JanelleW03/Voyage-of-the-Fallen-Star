@@ -1,40 +1,50 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NpcDialogue : MonoBehaviour
 {
-    public List<DialogueField> dialogue;
+    [Header("Dialogue Assets")]
+    public DialogueField startDialogue;
+    public DialogueField afterLetterDialogue;
 
     private DialogueManager _dialogueManager;
-    private bool _playerInRange;
-    private int _conversationIndex = 0;
+    private Inventory _inventory;
+    private EnemyController _enemyController;
+    private NpcEnemyHealthComponent _healthComponent;
 
     private void Start()
     {
         _dialogueManager = FindFirstObjectByType<DialogueManager>();
+        _inventory = FindFirstObjectByType<Inventory>();
+        _enemyController = GetComponent<EnemyController>();
+        _healthComponent = GetComponent<NpcEnemyHealthComponent>();
+
+        _enemyController.isHostile = false;
+
+        if (_healthComponent.healthSlider != null)
+            _healthComponent.healthSlider.gameObject.SetActive(false);
+
+        StartCoroutine(RunDialogueSequence());
     }
 
-    private void Update()
+    private IEnumerator RunDialogueSequence()
     {
-        if (_playerInRange && Input.GetKeyDown(KeyCode.E) && !_dialogueManager.IsDialogueActive())
-        {
-            if (_conversationIndex < dialogue.Count)
-            {
-                _dialogueManager.StartDialogue(new List<DialogueField> { dialogue[_conversationIndex] });
-                _conversationIndex++;
-            }
-        }
-    }
+        yield return null;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            _playerInRange = true;
-    }
+        _dialogueManager.StartDialogue(new List<DialogueField> { startDialogue });
+        yield return new WaitUntil(() => !_dialogueManager.IsDialogueActive());
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            _playerInRange = false;
+        yield return new WaitUntil(() => _inventory.HasLetter());
+        yield return new WaitUntil(() => !_inventory.IsInventoryClosed());
+        yield return new WaitUntil(() => _inventory.IsInventoryClosed());
+
+        yield return null;
+
+        _dialogueManager.StartDialogue(new List<DialogueField> { afterLetterDialogue });
+        yield return new WaitUntil(() => !_dialogueManager.IsDialogueActive());
+
+        _healthComponent.StartCombat();
+        _enemyController.isHostile = true;
     }
 }

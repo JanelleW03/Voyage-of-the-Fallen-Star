@@ -18,9 +18,13 @@ MonoBehaviour:
   dialogue:
   - Good Morning Princess! There's a letter on the table for you
   - Oh thank you! I'll read it quickly
+  - 'Remember to press (E) to interact when you get close and (I) to open the inventory
+    to read it '
   speakingName:
   - Castle Servant
   - Stella
+  - Castle Servant
   dialogueAudio:
+  - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}
   - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}
   - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}

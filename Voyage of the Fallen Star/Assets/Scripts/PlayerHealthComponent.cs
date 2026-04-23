@@ -1,9 +1,7 @@
-using UnityEngine.SceneManagement;
-
-public class PlayerHealthComponent: HealthComponent
+public class PlayerHealthComponent : HealthComponent
 {
     protected override void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameOverScreen.Instance?.Show();
     }
 }
