@@ -12,11 +12,11 @@ public class EnemyController : MonoBehaviour
     public float damage;
     public bool isHostile;
 
-    private NavMeshAgent _agent;
-    private float _lastAttackTime;
+    protected NavMeshAgent _agent;
+    protected float _lastAttackTime;
     private SpriteRenderer _spriteRenderer;
 
-    private void Start()
+    protected virtual void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
         _agent.updateRotation = false;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!isHostile || !player)
         {
@@ -58,7 +58,7 @@ public class EnemyController : MonoBehaviour
         _agent.SetDestination(player.position);
     }
 
-    private void AttackPlayer()
+    protected virtual void AttackPlayer()
     {
         _agent.ResetPath();
 

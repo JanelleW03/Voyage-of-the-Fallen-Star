@@ -5,6 +5,7 @@ public class PlayerCombatController : MonoBehaviour
 {
     private static readonly int MeleeAttackTrigger = Animator.StringToHash("MeleeAttackTrigger");
     private static readonly int RangedAttackTrigger = Animator.StringToHash("RangedAttackTrigger");
+    private static readonly int AoeAttackTrigger = Animator.StringToHash("AoeAttackTrigger");
     
     [Header("2.5D Hitbox Lenience")]
     public float meleeDepth = 1.5f; // How forgiving the Z-axis is for melee
@@ -123,7 +124,7 @@ public class PlayerCombatController : MonoBehaviour
     private void PerformAoe()
     {
         AOEAudio.Play();
-        _animator.SetTrigger(RangedAttackTrigger);
+        _animator.SetTrigger(AoeAttackTrigger);
         if (aoeParticlePrefab) Instantiate(aoeParticlePrefab, transform.position, Quaternion.identity);
         
         foreach (Collider enemy in Physics.OverlapBox(transform.position, new Vector3(aoeRadius, 2f, aoeDepth) / 2f, Quaternion.identity, enemyLayer))

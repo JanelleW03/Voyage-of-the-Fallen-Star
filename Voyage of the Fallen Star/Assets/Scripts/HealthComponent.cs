@@ -10,7 +10,7 @@ public class HealthComponent : MonoBehaviour
 
     public Slider healthSlider;
     
-    private void Start()
+    protected virtual void Start()
     {
         _currentHealth = maxHealth;
         

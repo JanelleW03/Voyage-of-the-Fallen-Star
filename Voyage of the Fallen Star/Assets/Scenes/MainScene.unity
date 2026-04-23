@@ -21085,7 +21085,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -28623452, guid: ce44ea56d9e76f341a7c6d63736cb24f, type: 3}
+  m_Sprite: {fileID: 1743581757, guid: 909eace9e4b669c418f5d4a06623333c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -29460,9 +29460,10 @@ GameObject:
   - component: {fileID: 1354858881}
   - component: {fileID: 1354858884}
   - component: {fileID: 1354858885}
-  - component: {fileID: 1354858886}
   - component: {fileID: 1354858887}
-  - component: {fileID: 1354858888}
+  - component: {fileID: 1354858889}
+  - component: {fileID: 1354858890}
+  - component: {fileID: 1354858891}
   m_Layer: 6
   m_Name: lucien sprite
   m_TagString: Enemy
@@ -29579,26 +29580,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueFight
   dialogue: {fileID: 11400000, guid: 9eb353adf1e8d1a46a835fa5a20b70f7, type: 2}
-  enemyController: {fileID: 1354858886}
-  healthComponent: {fileID: 1354858888}
---- !u!114 &1354858886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354858880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4185d3d1d35ffa4c8f30745255aee47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  player: {fileID: 994718427}
-  chaseRange: 25
-  attackRange: 1.5
-  attackCooldown: 1.5
-  damage: 10
-  isHostile: 0
+  enemyController: {fileID: 1354858890}
+  healthComponent: {fileID: 0}
 --- !u!195 &1354858887
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -29621,7 +29604,29 @@ NavMeshAgent:
   m_BaseOffset: 2.75
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1354858888
+--- !u!95 &1354858889
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354858880}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 650d61afcaf91964684e6288b9265232, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1354858890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29630,9 +29635,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1354858880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db48d00386963054283580a90b64d5c4, type: 3}
+  m_Script: {fileID: 11500000, guid: f009946bcebc4d4439a8fe6a990cdade, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NpcEnemyHealthComponent
+  m_EditorClassIdentifier: Assembly-CSharp::LucienController
+  player: {fileID: 994718427}
+  chaseRange: 25
+  attackRange: 1.5
+  attackCooldown: 1.5
+  damage: 10
+  isHostile: 0
+--- !u!114 &1354858891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354858880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 202ee08063c3f5043800df504006541d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LucienHealthComponent
   maxHealth: 100
   healthSlider: {fileID: 150781327}
   manaReward: 25
