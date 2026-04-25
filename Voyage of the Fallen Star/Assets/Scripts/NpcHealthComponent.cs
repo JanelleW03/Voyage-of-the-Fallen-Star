@@ -16,20 +16,29 @@ public class NpcEnemyHealthComponent : HealthComponent
             healthSlider.gameObject.SetActive(true);
     }
 
+    protected virtual bool CountsAsNPC => true; // bosses can override this to false
+
     protected override void Die()
     {
         StatsManager stats = FindFirstObjectByType<StatsManager>();
-        if (stats)
-            stats.AddMana(manaReward);
+        if (stats) stats.AddMana(manaReward);
 
         EnemyController ai = GetComponent<EnemyController>();
-        if (ai)
-            ai.isHostile = false;
+        if (ai) ai.isHostile = false;
 
-        if (healthSlider != null)
-            healthSlider.gameObject.SetActive(false);
-
+        if (healthSlider != null) healthSlider.gameObject.SetActive(false);
         if (spriteRenderer != null && passiveSprite != null)
             spriteRenderer.sprite = passiveSprite;
+
+        NpcDialogue npcDialogue = GetComponent<NpcDialogue>();
+        if (npcDialogue != null)
+            npcDialogue.StartCoroutine(npcDialogue.OnNpcDefeated());
+
+        NpcDialogueFight npcDialogueFight = GetComponent<NpcDialogueFight>();
+        if (npcDialogueFight != null)
+            npcDialogueFight.StartCoroutine(npcDialogueFight.OnNpcDefeated());
+
+        if (CountsAsNPC)
+            VictoryManager.Instance?.ReportDefeated(this);
     }
 }

@@ -9,9 +9,16 @@ public class DoorTrigger : MonoBehaviour
 
     private bool isTransitioning = false;
 
+    private bool _isLocked = false;
+
+    public void SetLocked(bool locked)
+    {
+        _isLocked = locked;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isTransitioning)
+        if (other.CompareTag("Player") && !isTransitioning && !_isLocked)
             StartCoroutine(TransitionToRoom(other.gameObject));
     }
 
@@ -19,7 +26,8 @@ public class DoorTrigger : MonoBehaviour
     {
         isTransitioning = true;
 
-        // Play door sound before fading
+        Debug.Log($"spawnPoint: {spawnPoint}, player: {player}, FadeManager: {FadeManager.Instance}");
+
         if (doorAudioSource != null)
             doorAudioSource.Play();
 
@@ -27,6 +35,12 @@ public class DoorTrigger : MonoBehaviour
 
         CharacterController cc = player.GetComponent<CharacterController>();
         if (cc != null) cc.enabled = false;
+
+        if (spawnPoint == null)
+        {
+            Debug.LogError("spawnPoint is null!");
+            yield break;
+        }
 
         Vector3 delta = spawnPoint.position - player.transform.position;
 

@@ -9,11 +9,12 @@ public class HealthComponent : MonoBehaviour
     private float _currentHealth;
 
     public Slider healthSlider;
-    
+
     protected virtual void Start()
     {
         _currentHealth = maxHealth;
-        
+        Debug.Log($"[{name}] HealthComponent initialized, _currentHealth: {_currentHealth}");
+
         healthSlider.maxValue = maxHealth;
         healthSlider.value = _currentHealth;
     }
@@ -32,8 +33,6 @@ public class HealthComponent : MonoBehaviour
             Die();
         }
     }
-
-    // TODO: Potions
     public void Heal(float amount)
     {
         if (_currentHealth <= 0) return;

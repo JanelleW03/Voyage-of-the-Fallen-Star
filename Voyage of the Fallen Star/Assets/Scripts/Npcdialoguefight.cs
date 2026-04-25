@@ -7,9 +7,13 @@ public class NpcDialogueFight : MonoBehaviour
     [Header("Dialogue")]
     public DialogueField dialogue;
 
+
     [Header("Combat")]
     public EnemyController enemyController;
     public NpcEnemyHealthComponent healthComponent;
+
+    [Header("Room")]
+    public DoorTrigger exitDoor;
 
     private DialogueManager _dialogueManager;
     private bool _dialoguePlayed = false;
@@ -23,6 +27,11 @@ public class NpcDialogueFight : MonoBehaviour
 
         if (healthComponent != null && healthComponent.healthSlider != null)
             healthComponent.healthSlider.gameObject.SetActive(false);
+
+        // Lock the door at the start
+        if (exitDoor != null)
+            exitDoor.SetLocked(true);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,6 +59,32 @@ public class NpcDialogueFight : MonoBehaviour
         // Start combat
         healthComponent?.StartCombat();
         if (enemyController != null)
-            enemyController.isHostile = true;
+            enemyController.SetHostile(true);
+
     }
+
+    public IEnumerator OnNpcDefeated()
+    {
+        Debug.Log("OnNpcDefeated started");
+        yield return new WaitUntil(() => !_dialogueManager.IsDialogueActive());
+        Debug.Log("Dialogue clear, starting defeat dialogue");
+
+        _dialogueManager.StartDialogue(new List<DialogueField> { dialogue });
+        yield return null;
+        yield return new WaitUntil(() => !_dialogueManager.IsDialogueActive());
+        Debug.Log("Defeat dialogue finished");
+
+        if (exitDoor != null)
+        {
+            Debug.Log("Unlocking door");
+            exitDoor.SetLocked(false);
+        }
+        else
+        {
+            Debug.Log("exitDoor is NULL!");
+        }
+    }
+
+
+
 }

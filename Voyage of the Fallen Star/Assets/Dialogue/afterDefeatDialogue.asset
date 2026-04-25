@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87e289e13b91354abea4437d9558b34, type: 3}
+  m_Name: afterDefeatDialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueField
+  portraits:
+  - {fileID: 0}
+  - {fileID: 0}
+  dialogue:
+  - Oh my, I'm sorry princess. I didn't feel in control of myself.I don't know what
+    happened
+  - Something is going on, I'm going to find out what
+  - Please be careful
+  speakingName:
+  - Castle Servant
+  - Stella
+  - Castle Servant
+  dialogueAudio:
+  - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}
+  - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}
+  - {fileID: 8300000, guid: 5dc98270344227b4dbfc27030bd27efb, type: 3}

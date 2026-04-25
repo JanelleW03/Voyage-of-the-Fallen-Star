@@ -12,9 +12,13 @@ public class LucienHealthComponent : NpcEnemyHealthComponent
         _animator = GetComponentInChildren<Animator>();
     }
 
+    protected override bool CountsAsNPC => false; // he's the boss, not an NPC kill
+
     protected override void Die()
     {
-        base.Die();
+        base.Die(); // cleanup runs, but ReportNPCDefeated is skipped
         _animator.SetFloat(Evil, 1);
+        VictoryManager.Instance?.ReportBossDefeated();
     }
+
 }

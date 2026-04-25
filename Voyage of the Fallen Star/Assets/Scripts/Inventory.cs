@@ -32,10 +32,21 @@ public class Inventory : MonoBehaviour
 
     private readonly List<WorldItem> nearbyItems = new();
 
+    private DialogueManager _dialogueManager;
+
+    private void Start()
+    {
+        _dialogueManager = FindFirstObjectByType<DialogueManager>();
+    }
+
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+            // Block inventory if dialogue is open
+            if (_dialogueManager != null && _dialogueManager.IsDialogueActive()) return;
+
             bool isOpen = !ui.gameObject.activeSelf;
             ui.gameObject.SetActive(isOpen);
             Time.timeScale = isOpen ? 0f : 1f;
@@ -51,6 +62,7 @@ public class Inventory : MonoBehaviour
                 PickUp(closest);
         }
     }
+
 
     // Returns true if the inventory UI is currently closed
     public bool IsInventoryClosed() => !ui.gameObject.activeSelf;

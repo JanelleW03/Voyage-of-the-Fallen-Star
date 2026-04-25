@@ -7,6 +7,10 @@ public class NpcDialogue : MonoBehaviour
     [Header("Dialogue Assets")]
     public DialogueField startDialogue;
     public DialogueField afterLetterDialogue;
+    public DialogueField afterDefeatDialogue;
+
+    [Header("Room")]
+    public DoorTrigger exitDoor;
 
     private DialogueManager _dialogueManager;
     private Inventory _inventory;
@@ -24,6 +28,9 @@ public class NpcDialogue : MonoBehaviour
 
         if (_healthComponent.healthSlider != null)
             _healthComponent.healthSlider.gameObject.SetActive(false);
+
+        if (exitDoor != null)
+            exitDoor.SetLocked(true);
 
         StartCoroutine(RunDialogueSequence());
     }
@@ -45,6 +52,18 @@ public class NpcDialogue : MonoBehaviour
         yield return new WaitUntil(() => !_dialogueManager.IsDialogueActive());
 
         _healthComponent.StartCombat();
-        _enemyController.isHostile = true;
+        _enemyController.SetHostile(true);
+    }
+
+    public IEnumerator OnNpcDefeated()
+    {
+        yield return new WaitUntil(() => !_dialogueManager.IsDialogueActive());
+
+        _dialogueManager.StartDialogue(new List<DialogueField> { afterDefeatDialogue });
+        yield return null;
+        yield return new WaitUntil(() => !_dialogueManager.IsDialogueActive());
+
+        if (exitDoor != null)
+            exitDoor.SetLocked(false);
     }
 }

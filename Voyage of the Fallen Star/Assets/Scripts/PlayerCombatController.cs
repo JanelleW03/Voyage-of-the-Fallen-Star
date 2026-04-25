@@ -79,8 +79,13 @@ public class PlayerCombatController : MonoBehaviour
         meleeAudio.Play();
         _animator.SetTrigger(MeleeAttackTrigger);
         _lastMeleeTime = Time.time;
-        
-        foreach (Collider enemy in Physics.OverlapBox(meleeAttackPoint.position, new Vector3(meleeRange, 2f, meleeDepth) / 2f, meleeAttackPoint.rotation, enemyLayer))
+
+        foreach (Collider enemy in Physics.OverlapBox(
+            meleeAttackPoint.position,
+            new Vector3(meleeRange, 2f, meleeDepth) / 2f,
+            meleeAttackPoint.rotation,
+            enemyLayer,
+            QueryTriggerInteraction.Collide))
         {
             HealthComponent enemyHealth = enemy.GetComponentInParent<HealthComponent>();
             if (enemyHealth) enemyHealth.TakeDamage(meleeDamage);
@@ -120,20 +125,25 @@ public class PlayerCombatController : MonoBehaviour
             rb.linearVelocity = aimDirection * projectileSpeed;
         }
     }
-    
+
     private void PerformAoe()
     {
         AOEAudio.Play();
         _animator.SetTrigger(AoeAttackTrigger);
         if (aoeParticlePrefab) Instantiate(aoeParticlePrefab, transform.position, Quaternion.identity);
-        
-        foreach (Collider enemy in Physics.OverlapBox(transform.position, new Vector3(aoeRadius, 2f, aoeDepth) / 2f, Quaternion.identity, enemyLayer))
+
+        foreach (Collider enemy in Physics.OverlapBox(
+            transform.position,
+            new Vector3(aoeRadius, 2f, aoeDepth) / 2f,
+            Quaternion.identity,
+            enemyLayer,
+            QueryTriggerInteraction.Collide))
         {
             HealthComponent enemyHealth = enemy.GetComponentInParent<HealthComponent>();
             if (enemyHealth) enemyHealth.TakeDamage(aoeDamage);
         }
     }
-    
+
     private void OnDrawGizmosSelected()
     {
         // Draws the Melee Hitbox (Red)
